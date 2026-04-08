@@ -20,6 +20,42 @@
                 data-meter="{{ $tune->tuneType?->time_signature ?? '4/4' }}"
                 data-abc="{{ $tune->two_bar }}"
             ></div>
+            @if ($tune->books->isNotEmpty())
+                <section class="mt-8">
+                    <h2 class="text-xl font-semibold mb-3">Bibliography</h2>
+
+                    <ul class="space-y-2">
+                        @foreach ($tune->books as $book)
+                            <li>
+                                <strong>{{ $book->name }}</strong>
+                                @if ($book->author)
+                                    — {{ $book->author }}
+                                @endif
+                                @if ($book->publication_date)
+                                    ({{ \Illuminate\Support\Carbon::parse($book->publication_date)->format('Y') }})
+                                @endif
+
+                                @if ($book->pivot->name_in_book || $book->pivot->page_number || $book->pivot->tune_number)
+                                    <div class="text-sm text-gray-600">
+                                        @if ($book->pivot->name_in_book)
+                                            Printed as: {{ $book->pivot->name_in_book }}
+                                        @endif
+
+                                        @if ($book->pivot->page_number)
+                                            , p. {{ $book->pivot->page_number }}
+                                        @endif
+
+                                        @if ($book->pivot->tune_number)
+                                            , tune {{ $book->pivot->tune_number }}
+                                        @endif
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </section>
+            @endif
+
         </article>
 
     <script>

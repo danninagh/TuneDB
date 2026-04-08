@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tunes', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->text('two_bar')->nullable();
-                $table->foreignId('tune_type_id')
-                    ->nullable()
-                    ->constrained('tune_types')
-                    ->nullOnDelete();
-                $table->string('key')->nullable();
-                $table->text('notes')->nullable();
-                $table->timestamps();
-            });
+            $table->id();
+            $table->string('name');
+            $table->text('two_bar')->nullable();
+            $table->foreignId('tune_type_id')
+                ->nullable()
+                ->constrained('tune_types')
+                ->nullOnDelete();
+            $table->string('key')->nullable();
+            $table->text('notes')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

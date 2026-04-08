@@ -3,27 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Tune extends Model
+class Book extends Model
 {
     protected $fillable = [
         'name',
-        'two_bar',
-        'tune_type_id',
-        'key',
-        'notes',
+        'author',
+        'publication_date',
     ];
 
-    public function tuneType(): BelongsTo
+    public function tunes(): BelongsToMany
     {
-        return $this->belongsTo(TuneType::class);
-    }
-
-    public function books(): BelongsToMany
-    {
-        return $this->belongsToMany(Book::class)
+        return $this->belongsToMany(Tune::class)
             ->withPivot([
                 'name_in_book',
                 'page_number',

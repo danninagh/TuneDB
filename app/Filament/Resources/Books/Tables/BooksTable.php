@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Tunes\Tables;
+namespace App\Filament\Resources\Books\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,7 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TunesTable
+class BooksTable
 {
     public static function configure(Table $table): Table
     {
@@ -16,12 +16,11 @@ class TunesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('two_bar')
+                TextColumn::make('author')
                     ->searchable(),
-                TextColumn::make('tuneType.name')
-                    ->searchable(),
-                TextColumn::make('key')
-                    ->searchable(),
+                TextColumn::make('publication_date')
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

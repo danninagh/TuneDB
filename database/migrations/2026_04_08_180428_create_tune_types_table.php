@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tune_types', function (Blueprint $table) {
-                $table->id();
-                $table->string('name')->unique();
-                $table->string('time_signature');
-                $table->timestamps();
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('time_signature');
+            $table->timestamps();
         });
     }
 
